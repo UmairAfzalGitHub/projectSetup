@@ -26,26 +26,7 @@ extension NSError {
         let okAction = VTAlertAction(title: "OK", style: .default) { (action) in
 
             if self.localizedDescription == kErrorSessionExpired {
-                Utility.removedCookies()
-                Utility.clearUser()
-
-                SocketIOManager.sharedInstance.socket?.disconnect()
-                SocketIOManager.sharedInstance.socket = nil
-                SocketIOManager.sharedInstance.socketManager = SocketManager(socketURL: URL(string: kStagingSocketUrl)!, config: [.log(true), .compress])
-
-                let signInNavigationController = UINavigationController()
-                let signinViewController = SignInViewController()
-
-                signInNavigationController.viewControllers = [signinViewController]
-                signInNavigationController.transparentNavigationBar()
-                signInNavigationController.setupAppThemeNavigationBar()
-                UserDefaults.standard.set(false, forKey: kIsUserLoggedIn)
-                UserDefaults.standard.removeObject(forKey: kIsCardInfoAdded)
-
-                let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
-                DispatchQueue.main.asyncAfter(deadline: when) {
-                    viewController.present(signInNavigationController, animated: true, completion: nil)
-                }
+                Utility.setSignViewControllerAsRoot()
             }
         }
 
@@ -97,26 +78,7 @@ extension NSError {
         }
 
         if self.localizedDescription == kErrorSessionExpired {
-            Utility.removedCookies()
-            Utility.clearUser()
-
-            SocketIOManager.sharedInstance.socket?.disconnect()
-            SocketIOManager.sharedInstance.socket = nil
-            SocketIOManager.sharedInstance.socketManager = SocketManager(socketURL: URL(string: kStagingSocketUrl)!, config: [.log(true), .compress])
-
-            let signInNavigationController = UINavigationController()
-            let signinViewController = SignInViewController()
-
-            signInNavigationController.viewControllers = [signinViewController]
-            signInNavigationController.transparentNavigationBar()
-            signInNavigationController.setupAppThemeNavigationBar()
-            UserDefaults.standard.set(false, forKey: kIsUserLoggedIn)
-            UserDefaults.standard.removeObject(forKey: kIsCardInfoAdded)
-
-            let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
-            DispatchQueue.main.asyncAfter(deadline: when) {
-                UIApplication.shared.keyWindow!.replaceRootViewControllerWith(signInNavigationController, animated: true, completion: nil)
-            }
+            Utility.setSignViewControllerAsRoot()
         }
     }
 

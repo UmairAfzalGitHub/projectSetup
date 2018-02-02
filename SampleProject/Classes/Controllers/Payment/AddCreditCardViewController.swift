@@ -135,7 +135,7 @@ class AddCreditCardViewController: UIViewController {
 
     func sendTokenToServer(token: String) {
 
-        APIClient.shared.sendStripeToken(token: token) { (response, result, error, isCancelled, status) in
+        APIClient.shared.sendStripeToken(token: token) { (result, error) in
             Utility.hideLoading(viewController: self)
 
             if error != nil {

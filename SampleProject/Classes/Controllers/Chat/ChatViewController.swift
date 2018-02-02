@@ -242,7 +242,7 @@ class ChatViewController: JSQMessagesViewController {
 
     private func loadEarlierMessages() {
 
-        APIClient.shared.getPreviousChat(jobId: JobId, offSet: offSet) { (response, result, error, isCancelld, status) in
+        APIClient.shared.getPreviousChat(jobId: JobId, offSet: offSet) { (result, error) in
 
             if error != nil {
                 error?.showErrorBelowNavigation(viewController: self)
@@ -302,7 +302,7 @@ class ChatViewController: JSQMessagesViewController {
         Utility.showLoading(viewController: self)
         self.inputToolbar.contentView.textView.isUserInteractionEnabled = false
 
-        APIClient.shared.getPreviousChat(jobId: JobId, offSet: offSet) { (response, result, error, isCancelld, status) in
+        APIClient.shared.getPreviousChat(jobId: JobId, offSet: offSet) { (result, error) in
             Utility.hideLoading(viewController: self)
             self.inputToolbar.contentView.textView.isUserInteractionEnabled = true
             self.isLoadingPreviosChat = false

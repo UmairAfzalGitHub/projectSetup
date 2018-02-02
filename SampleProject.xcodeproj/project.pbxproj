@@ -54,7 +54,7 @@
 		680B0295201CC81600BECE43 /* TSAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680B0291201CC81500BECE43 /* TSAPIClient.swift */; };
 		680B0296201CC81600BECE43 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680B0292201CC81500BECE43 /* ApiClient.swift */; };
 		680B0297201CC81600BECE43 /* ApiResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680B0293201CC81600BECE43 /* ApiResponseHandler.swift */; };
-		680B029A201CC82C00BECE43 /* LCUserPushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680B0298201CC82C00BECE43 /* LCUserPushNotification.swift */; };
+		680B029A201CC82C00BECE43 /* UserPushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680B0298201CC82C00BECE43 /* UserPushNotification.swift */; };
 		680B029B201CC82C00BECE43 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680B0299201CC82C00BECE43 /* User.swift */; };
 		680B029E201CD40100BECE43 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680B029C201CD40100BECE43 /* Message.swift */; };
 		680B029F201CD40100BECE43 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680B029D201CD40100BECE43 /* SignIn.swift */; };
@@ -122,7 +122,7 @@
 		680B0291201CC81500BECE43 /* TSAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSAPIClient.swift; sourceTree = "<group>"; };
 		680B0292201CC81500BECE43 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		680B0293201CC81600BECE43 /* ApiResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiResponseHandler.swift; sourceTree = "<group>"; };
-		680B0298201CC82C00BECE43 /* LCUserPushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCUserPushNotification.swift; sourceTree = "<group>"; };
+		680B0298201CC82C00BECE43 /* UserPushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPushNotification.swift; sourceTree = "<group>"; };
 		680B0299201CC82C00BECE43 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		680B029C201CD40100BECE43 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		680B029D201CD40100BECE43 /* SignIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
@@ -200,6 +200,7 @@
 				680B021E201CC2C100BECE43 /* Application */,
 				680B021D201CBF0700BECE43 /* Controllers */,
 				680B021C201CBF0200BECE43 /* Models */,
+				68C07AEB20243444000E58FB /* Networking */,
 				680B021B201CBEF800BECE43 /* Constants */,
 				680B021A201CBEE700BECE43 /* Utilities */,
 				680B0219201CBEE100BECE43 /* Helpers */,
@@ -275,8 +276,11 @@
 		680B021C201CBF0200BECE43 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				680B026B201CC73000BECE43 /* Api Client */,
-				680B026C201CC74200BECE43 /* Api Data Models */,
+				680B02BD201CE44200BECE43 /* StripeCustomer.swift */,
+				680B029C201CD40100BECE43 /* Message.swift */,
+				680B029D201CD40100BECE43 /* SignIn.swift */,
+				680B0298201CC82C00BECE43 /* UserPushNotification.swift */,
+				680B0299201CC82C00BECE43 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -299,29 +303,6 @@
 				680B0204201CBB2D00BECE43 /* AppDelegate.swift */,
 			);
 			path = Application;
-			sourceTree = "<group>";
-		};
-		680B026B201CC73000BECE43 /* Api Client */ = {
-			isa = PBXGroup;
-			children = (
-				680B0292201CC81500BECE43 /* ApiClient.swift */,
-				680B0290201CC81500BECE43 /* ApiClientHandler.swift */,
-				680B0293201CC81600BECE43 /* ApiResponseHandler.swift */,
-				680B0291201CC81500BECE43 /* TSAPIClient.swift */,
-			);
-			path = "Api Client";
-			sourceTree = "<group>";
-		};
-		680B026C201CC74200BECE43 /* Api Data Models */ = {
-			isa = PBXGroup;
-			children = (
-				680B02BD201CE44200BECE43 /* StripeCustomer.swift */,
-				680B029C201CD40100BECE43 /* Message.swift */,
-				680B029D201CD40100BECE43 /* SignIn.swift */,
-				680B0298201CC82C00BECE43 /* LCUserPushNotification.swift */,
-				680B0299201CC82C00BECE43 /* User.swift */,
-			);
-			path = "Api Data Models";
 			sourceTree = "<group>";
 		};
 		680B0271201CC7A500BECE43 /* Views */ = {
@@ -408,6 +389,17 @@
 			children = (
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		68C07AEB20243444000E58FB /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				680B0292201CC81500BECE43 /* ApiClient.swift */,
+				680B0290201CC81500BECE43 /* ApiClientHandler.swift */,
+				680B0293201CC81600BECE43 /* ApiResponseHandler.swift */,
+				680B0291201CC81500BECE43 /* TSAPIClient.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		CD3A81D93037FABC59BD0C21 /* Pods */ = {
@@ -629,7 +621,7 @@
 				680B02BC201CDC6800BECE43 /* PaymentsViewController.swift in Sources */,
 				680B026E201CC76800BECE43 /* Utility.swift in Sources */,
 				680B0276201CC7B900BECE43 /* VTUITextField.swift in Sources */,
-				680B029A201CC82C00BECE43 /* LCUserPushNotification.swift in Sources */,
+				680B029A201CC82C00BECE43 /* UserPushNotification.swift in Sources */,
 				680B0262201CC71900BECE43 /* UITextField.swift in Sources */,
 				680B029B201CC82C00BECE43 /* User.swift in Sources */,
 				680B0260201CC71900BECE43 /* UIFont.swift in Sources */,

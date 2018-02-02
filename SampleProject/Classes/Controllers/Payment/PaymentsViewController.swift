@@ -100,7 +100,7 @@ class PaymentsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         if cards.count == 0 && !isFirstLoad {
-            Utility.emptyTableViewMessageWithImage(imageName: "default_card", message: "No credit card information added", viewController: self, tableView: tableView)
+            Utility.emptyTableViewMessageWithImage(image: #imageLiteral(resourceName: "default_card"), message: "No credit card information added", viewController: self, tableView: tableView)
             return 0
         }
 
@@ -163,7 +163,7 @@ class PaymentsViewController: UIViewController, UITableViewDelegate, UITableView
             Utility.showLoading(viewController: self)
         }
 
-        APIClient.shared.getStripeCustomer { (response, result, error, isCancelled, status) in
+        APIClient.shared.getStripeCustomer { (result, error) in
             self.refreshControl.endRefreshing()
             Utility.hideLoading(viewController: self)
 
@@ -188,7 +188,7 @@ class PaymentsViewController: UIViewController, UITableViewDelegate, UITableView
     func deleteCard(cardId: String) {
         Utility.showLoading(viewController: self)
 
-        APIClient.shared.deleteUserCard(cardId: cardId) { (response, result, error, isCancelled, status) in
+        APIClient.shared.deleteUserCard(cardId: cardId) { (result, error) in
             Utility.hideLoading(viewController: self)
 
             if error != nil {
@@ -208,13 +208,13 @@ class PaymentsViewController: UIViewController, UITableViewDelegate, UITableView
     func changeDefaultCard(cardId: String) {
         Utility.showLoading(viewController: self)
 
-        APIClient.shared.changeDefaultCard(cardId: cardId) { (response, result, error, isCancelled, status) in
+        APIClient.shared.changeDefaultCard(cardId: cardId) { (result, error) in
             Utility.hideLoading(viewController: self)
 
             if error != nil {
                 error?.showErrorBelowNavigation(viewController: self)
 
-            } else if !isCancelled && status {
+            } else {
 
                 if let data = Mapper<StripeCustomer>().map(JSONObject: result) {
                     self.cards = data.cards

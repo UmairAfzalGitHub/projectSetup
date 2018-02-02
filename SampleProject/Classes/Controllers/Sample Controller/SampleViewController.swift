@@ -23,7 +23,14 @@ class SampleViewController: UIViewController {
 
     // MARK: - Variables & Constants
 
+    // Outlets should be at top, Then define constants, then define variables
+
+    @IBOutlet weak var mobileNumberTextField: UITextField!
+
+    let radius = 1.5
+
     var id = ""
+    var name  = ""
 
     // MARK: - UIViewController Methods
 
@@ -56,10 +63,6 @@ class SampleViewController: UIViewController {
         // create and add navigation bar buttons
     }
 
-    // MARK: - Delegate Methods
-
-    // Write the delegate methods if they are less the 2. Otherwise write an extension and move the mark and methods there.
-
     // MARK: - Selectors
 
     // selector methods for notifications and Navigation bar buttons
@@ -73,7 +76,7 @@ class SampleViewController: UIViewController {
     func loadData() {
         // use this method to call the Api on viewDidLoad OR getting data for viewController on viewWillAppear etc
 
-        APIClient.shared.loginAsUser(mobileNumber: "") { (response, result, error, isCancleed, status) in
+        APIClient.shared.loginAsUser(mobileNumber: "") { (result, error) in
 
             if error != nil {
                 error?.showErrorBelowNavigation(viewController: self)
@@ -109,4 +112,12 @@ extension SampleViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Do some stuff
     }
+
+    // MARK: - UIScrollView Delegate
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    }
+
+    // MARK: - Delegate Methods
+    // Deletage of ViewConrollers
 }

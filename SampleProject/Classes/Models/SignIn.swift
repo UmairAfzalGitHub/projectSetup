@@ -29,7 +29,6 @@ class SignIn: Mappable {
     var streetAdress = ""
 
     required init?(map: Map) {
-
     }
 
     func mapping(map: Map) {

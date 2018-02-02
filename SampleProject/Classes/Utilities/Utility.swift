@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 import BRYXBanner
+import SocketIO
 import ObjectMapper
 import UserNotifications
 import NVActivityIndicatorView
@@ -52,9 +53,9 @@ class Utility : NSObject {
         tableView.separatorStyle = .none
     }
 
-    class func emptyTableViewMessageWithImage(imageName: String, message:String, viewBackgroundColor: UIColor = UIColor.white, viewController: UIViewController, tableView: UITableView) {
+    class func emptyTableViewMessageWithImage(image: UIImage, message: String, viewBackgroundColor: UIColor = UIColor.white, viewController: UIViewController, tableView: UITableView) {
         let noJobsView = NoJobsViews.instanceFromNib()
-        noJobsView.imageView.image = UIImage(named: imageName)
+        noJobsView.imageView.image = image
         noJobsView.messageLabel.text = message
         noJobsView.messageLabel.font = UIFont.appThemeFontWithSize(15.0)
         noJobsView.backgroundColor = viewBackgroundColor
@@ -353,6 +354,30 @@ class Utility : NSObject {
         UserDefaults.standard.removeObject(forKey: kUserId)
         UserDefaults.standard.removeObject(forKey: kUserId)
 
+    }
+
+    class func setSignViewControllerAsRoot() {
+        Utility.removedCookies()
+        Utility.clearUser()
+
+        SocketIOManager.sharedInstance.socket?.disconnect()
+        SocketIOManager.sharedInstance.socket = nil
+        SocketIOManager.sharedInstance.socketManager = SocketManager(socketURL: URL(string: kStagingSocketUrl)!, config: [.log(true), .compress])
+
+        let signInNavigationController = UINavigationController()
+        let signinViewController = SignInViewController()
+
+        signInNavigationController.viewControllers = [signinViewController]
+        signInNavigationController.transparentNavigationBar()
+        signInNavigationController.setupAppThemeNavigationBar()
+        UserDefaults.standard.set(false, forKey: kIsUserLoggedIn)
+        UserDefaults.standard.removeObject(forKey: kIsCardInfoAdded)
+
+        let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
+
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            UIApplication.shared.keyWindow!.replaceRootViewControllerWith(signInNavigationController, animated: true, completion: nil)
+        }
     }
 
     class func hideLoading(viewController: UIViewController) {

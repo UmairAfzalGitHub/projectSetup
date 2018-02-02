@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import ObjectMapper
 
-typealias APIClientCompletionHandler = (_ response: HTTPURLResponse?, _ result: AnyObject?, _ error: NSError?, _ isCancelled: Bool, _ status: Bool) -> Void
+typealias APIClientCompletionHandler = (_ result: AnyObject?, _ error: NSError?) -> Void
 
 enum APIClientHandlerErrorCode: Int {
     case general = 30001
@@ -49,7 +49,7 @@ class APIClientHandler: TSAPIClient {
                 }
 
                 DispatchQueue.main.async { // Correct
-                    completionBlock(response, nil, apiError, isCancelled, true)
+                    completionBlock(nil, apiError)
                 }
 
             } else {
@@ -91,20 +91,20 @@ class APIClientHandler: TSAPIClient {
                     resultError = self.createError(errorMessage)
 
                     DispatchQueue.main.async { // Correct
-                        completionBlock(response, nil, resultError, false, false)
+                        completionBlock(nil, resultError)
                     }
 
                 } else if sendMessage {
                     resultError = self.createError(message)
 
                     DispatchQueue.main.async { // Correct
-                        completionBlock(response, nil, resultError, false, false)
+                        completionBlock(nil, resultError)
                     }
  
                 } else {
 
                     DispatchQueue.main.async { // Correct
-                        completionBlock(response, resultData, nil, false, true)
+                        completionBlock(resultData, nil)
                     }
                 }
             }
