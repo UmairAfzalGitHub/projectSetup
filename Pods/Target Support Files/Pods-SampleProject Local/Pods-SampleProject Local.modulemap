@@ -1,0 +1,6 @@
+framework module Pods_SampleProject_Local {
+  umbrella header "Pods-SampleProject Local-umbrella.h"
+
+  export *
+  module * { export * }
+}

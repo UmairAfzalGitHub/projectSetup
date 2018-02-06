@@ -31,13 +31,9 @@ class APIClientHandler: TSAPIClient {
 
         let request = self.serverRequest(methodName, parameters: parameters, isPostRequest: isPostRequest, headers: headers) { (response, result, error) in
             print(result ?? "no result")
-            if error != nil {
-                var isCancelled = false
-                var apiError = error
 
-                if error?.code == NSURLErrorCancelled {
-                    isCancelled = true
-                }
+            if error != nil {
+                var apiError = error
 
                 if error?.code == NSURLErrorNotConnectedToInternet {
                     let userInfo : [String: Any] = [NSLocalizedDescriptionKey : "No network found"]

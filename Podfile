@@ -1,9 +1,11 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+ platform :ios, '10.0'
 
-target 'SampleProject' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
+# Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+
+use_frameworks!
+
+def projectPods
 
 pod ‘Alamofire’, ‘~> 4.4’ # Netowrk activity / API Calling
 pod ‘ObjectMapper’, ‘~> 3.1’ # JSON Mapping
@@ -26,4 +28,20 @@ pod ‘BRYXBanner’ # Display notification in open app
 pod ‘NVActivityIndicatorView’ # Activity Indicators
 pod ‘Socket.IO-Client-Swift‘, ‘~> 13.1.0‘ #
 
+end
+
+target 'SampleProject' do
+    projectPods
+end
+
+target 'SampleProject Dev' do
+    projectPods
+end
+
+target 'SampleProject Local' do
+    projectPods
+end
+
+target 'SampleProject Staging' do
+    projectPods
 end
