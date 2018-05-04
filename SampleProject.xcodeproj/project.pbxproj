@@ -427,7 +427,6 @@
 			isa = PBXGroup;
 			children = (
 				680B0216201CBEBB00BECE43 /* Classes */,
-				681D21EC201DC97E005DF7A8 /* Assets */,
 				680B0206201CBB2D00BECE43 /* ViewController.swift */,
 				680B0208201CBB2D00BECE43 /* Main.storyboard */,
 				680B020B201CBB2D00BECE43 /* Assets.xcassets */,
@@ -617,21 +616,6 @@
 				680B02C0201CE80200BECE43 /* SampleViewController.swift */,
 			);
 			path = "Sample Controller";
-			sourceTree = "<group>";
-		};
-		681D21EC201DC97E005DF7A8 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				681D21ED201DC9B5005DF7A8 /* Fonts */,
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
-		681D21ED201DC9B5005DF7A8 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		68C07AEB20243444000E58FB /* Networking */ = {
