@@ -17,9 +17,9 @@ pod ‘Fabric’
 pod ‘Crashlytics’ #Crash reporting
 pod ‘SlideMenuControllerSwift’ # Drawer Menu
 pod ‘CarbonKit’ # Android like segmented Control
-pod ‘GoogleMaps’
-pod ‘GooglePlaces’
-pod ‘GooglePlacePicker’
+#pod ‘GoogleMaps’
+#pod ‘GooglePlaces’
+#pod ‘GooglePlacePicker’
 pod ‘JSQMessagesViewController’ # For chat view
 pod ‘Cosmos’, ‘~> 13.0’ # For Rating stars
 pod ‘DLRadioButton’, ‘~> 1.4’ # radio buttons
