@@ -3,7 +3,7 @@
 //  Labour Choice
 //
 //  Created by Umair on 13/07/2017.
-//  Copyright © 2017 talha. All rights reserved.
+//  Copyright © 2017 Umair Afzal. All rights reserved.
 //
 
 import Foundation

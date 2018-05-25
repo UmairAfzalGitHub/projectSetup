@@ -3,7 +3,7 @@
 //  Labour Choice
 //
 //  Created by Umair on 06/10/2017.
-//  Copyright © 2017 talha. All rights reserved.
+//  Copyright © 2017 Umair Afzal. All rights reserved.
 //
 
 import Foundation
@@ -36,20 +36,36 @@ extension UIButton {
         switch position {
 
         case .topRight:
-            location = CGPoint(x: self.frame.width - (radius + offset.x+2.0), y: (radius + offset.y+4.0))
-            label.frame = CGRect(origin: CGPoint(x: (location?.x)! - 4, y: offset.y+4.0), size: CGSize(width: 12, height: 16))
+            location = CGPoint(x: self.frame.width + 3.0, y: radius)
+            label.frame = CGRect(origin: CGPoint(x: self.frame.width - 3.0, y: radius/2 - 2), size: CGSize(width: 12, height: 16))
 
         case .topLeft:
-            location = CGPoint(x: 3.0, y: (radius + offset.y+2.0))
-            label.frame = CGRect(origin: CGPoint(x: -3.0, y: 5.0), size: CGSize(width: 12, height: 16))
+            location = CGPoint(x: 3.0, y: radius)
+            label.frame = CGRect(origin: CGPoint(x: -3.0, y: radius/2 - 2), size: CGSize(width: 12, height: 16))
 
         case .left:
-            location = CGPoint(x: self.frame.width - (radius + offset.x-5.0), y: (radius + offset.y-5.0))
-            label.frame = CGRect(origin: CGPoint(x: (location?.x)! - 4, y: offset.y-5.0), size: CGSize(width: 12, height: 16))
+            location = CGPoint(x: 3.0, y: (radius + offset.y+2.0))
+            label.frame = CGRect(origin: CGPoint(x: -3.0, y: radius/2 - 2), size: CGSize(width: 12, height: 16))
 
-        default: // right
-            location = CGPoint(x: self.frame.width - (radius + offset.x-5.0), y: (radius + offset.y-5.0))
-            label.frame = CGRect(origin: CGPoint(x: (location?.x)! - 4, y: offset.y-5.0), size: CGSize(width: 12, height: 16))
+        case .right:
+            location = CGPoint(x: 3.0, y: (radius + offset.y+2.0))
+            label.frame = CGRect(origin: CGPoint(x: -3.0, y: radius/2 - 2), size: CGSize(width: 12, height: 16))
+
+        case .bottomLeft:
+            location = CGPoint(x: 3.0, y: self.frame.height - 5)
+            label.frame = CGRect(origin: CGPoint(x: -3.0, y: self.frame.height-12), size: CGSize(width: 12, height: 16))
+
+        case .bottomRight:
+            location = CGPoint(x: self.frame.width + 3.0, y: self.frame.height - 5)
+            label.frame = CGRect(origin: CGPoint(x: self.frame.width - 3.0, y: self.frame.height-12), size: CGSize(width: 12, height: 16))
+
+        case .top:
+            location = CGPoint(x: 3.0, y: (radius + offset.y+2.0))
+            label.frame = CGRect(origin: CGPoint(x: -3.0, y: radius/2 - 2), size: CGSize(width: 12, height: 16))
+
+        default: // Bottom
+            location = CGPoint(x: 3.0, y: (radius + offset.y+2.0))
+            label.frame = CGRect(origin: CGPoint(x: -3.0, y: radius/2 - 2), size: CGSize(width: 12, height: 16))
         }
 
         badge.drawCircleAtLocation(location: location!, withRadius: radius, andColor: color, filled: filled)
@@ -76,5 +92,35 @@ extension UIButton {
 
     func removeBadge() {
         badgeLayer?.removeFromSuperlayer()
+    }
+    
+    @IBInspectable var localized : Bool {
+        get {
+            guard let _ = self.titleLabel else { return false }
+            return true
+        }
+        set{
+            
+            guard let titleLabel = self.titleLabel else { return }
+            var range = NSRange()
+            titleLabel.attributedText?.attributes(at: 0, effectiveRange: &range)
+            let isAttribute : Bool = titleLabel.text?.length != range.length
+            if !isAttribute
+            {
+                if let text = self.titleLabel?.text
+                {
+                    setTitle(text.localized, for: self.state)
+                }
+            }
+            else
+            {
+                if let attributedText = titleLabel.attributedText, attributedText.string.isEmpty == false
+                {
+                    let attributedTitle = NSMutableAttributedString.init(attributedString: attributedText)
+                    attributedTitle.mutableString.setString(attributedTitle.string.localized)
+                    setAttributedTitle(attributedTitle, for: self.state)
+                }
+            }
+        }
     }
 }

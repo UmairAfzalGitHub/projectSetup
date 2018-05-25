@@ -3,17 +3,18 @@
 //  Labour Choice
 //
 //  Created by Umair on 21/06/2017.
-//  Copyright © 2017 talha. All rights reserved.
+//  Copyright © 2017 Umair Afzal. All rights reserved.
 //
 
 import Foundation
 import UIKit
+import ObjectMapper
 
 extension UIViewController {
 
     func addCustomBackButton(isFindLabour: Bool = false) {
         let backButton: UIButton = UIButton (type: UIButtonType.custom)
-        backButton.setImage(UIImage(named: "icon_back"), for: UIControlState.normal)
+        backButton.setImage(#imageLiteral(resourceName: "icon_back_white"), for: UIControlState.normal)
 
         if isFindLabour {
             backButton.addTarget(self, action: #selector(self.backButtonTapped(button:)), for: UIControlEvents.touchUpInside)
@@ -22,7 +23,7 @@ extension UIViewController {
             backButton.addTarget(self, action: #selector(self.backButtonPressed(button:)), for: UIControlEvents.touchUpInside)
         }
 
-        backButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        backButton.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
         let barButton = UIBarButtonItem(customView: backButton)
 
         navigationItem.leftBarButtonItem = barButton
@@ -41,7 +42,17 @@ extension UIViewController {
     }
 
     @objc func backButtonPressed(button : UIButton) {
-        navigationController?.popViewController(animated: true)
+
+        if navigationController != nil {
+            navigationController?.popViewController(animated: true)
+
+//            if self.isKind(of: UserInstaBokkContainerViewController.self) {
+//                self.dismiss(animated: true, completion: nil)
+//            }
+
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
     @objc func barCancelButtonTapped(button: UIButton) {
@@ -86,4 +97,21 @@ extension UIViewController {
         return self.presentedViewController!.topMostViewController()
     }
 
+    func dismissOnTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissViewControllerOnTap))
+        tapGesture.delegate = self
+        self.view.addGestureRecognizer(tapGesture)
+        self.view.isUserInteractionEnabled = true
+    }
+
+    @objc func dismissViewControllerOnTap(gesture: UIGestureRecognizer) {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension UIViewController: UIGestureRecognizerDelegate {
+
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return touch.view == gestureRecognizer.view
+    }
 }

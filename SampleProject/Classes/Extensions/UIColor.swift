@@ -71,7 +71,7 @@ extension UIColor {
     }
 
     class func appThemeColor() -> UIColor {
-        let hex = "149a9a"
+        let hex = "8E5B9D"
         return UIColor.CustomColorFromHexaWithAlpha(hex, alpha: 1.0)
     }
 
@@ -87,41 +87,6 @@ extension UIColor {
 
     class func textFieldPlaceHolderColor() -> UIColor {
         let hex = "9a9999"
-        return UIColor.CustomColorFromHexaWithAlpha(hex, alpha: 1.0)
-    }
-
-    class func notificationBackgroundColor() -> UIColor {
-        let hex = "777677"
-        return UIColor.CustomColorFromHexaWithAlpha(hex, alpha: 1.0)
-    }
-
-    class func jobsDateLabelColor() -> UIColor {
-        let hex = "7f7f7f"
-        return UIColor.CustomColorFromHexaWithAlpha(hex, alpha: 1.0)
-    }
-
-    class func jobsLabourLabelColor(with alpha: CGFloat) -> UIColor {
-        let hex = "656666"
-        return UIColor.CustomColorFromHexaWithAlpha(hex, alpha: alpha)
-    }
-
-    class func jobsCostLabelColor() -> UIColor {
-        let hex = "59b95a"
-        return UIColor.CustomColorFromHexaWithAlpha(hex, alpha: 1.0)
-    }
-
-    class func skillsTagsBackgroundColor() -> UIColor {
-        let hex = "eeeceb"
-        return UIColor.CustomColorFromHexaWithAlpha(hex, alpha: 1.0)
-    }
-
-    class func homeAddressColor() -> UIColor {
-        let hex = "4d4d4e"
-        return UIColor.CustomColorFromHexaWithAlpha(hex, alpha: 1.0)
-    }
-
-    class func jobsTabColor() -> UIColor {
-        let hex = "b7b7b7"
         return UIColor.CustomColorFromHexaWithAlpha(hex, alpha: 1.0)
     }
 

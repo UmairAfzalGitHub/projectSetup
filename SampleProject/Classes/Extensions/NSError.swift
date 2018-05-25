@@ -2,8 +2,8 @@
 //  NSError+VT.swift
 //  Labour Choice
 //
-//  Created by talha on 19/06/2017.
-//  Copyright © 2017 talha. All rights reserved.
+//  Created by Umair Afzal on 19/06/2017.
+//  Copyright © 2017 Umair Afzal. All rights reserved.
 //
 
 import Foundation
@@ -26,7 +26,8 @@ extension NSError {
         let okAction = VTAlertAction(title: "OK", style: .default) { (action) in
 
             if self.localizedDescription == kErrorSessionExpired {
-                Utility.setSignViewControllerAsRoot()
+                Utility.clearUser()
+                Utility.setupWelcomeAsRootViewController()
             }
         }
 
@@ -78,7 +79,8 @@ extension NSError {
         }
 
         if self.localizedDescription == kErrorSessionExpired {
-            Utility.setSignViewControllerAsRoot()
+            Utility.clearUser()
+            Utility.setupWelcomeAsRootViewController()
         }
     }
 

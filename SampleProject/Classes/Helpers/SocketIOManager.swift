@@ -31,8 +31,11 @@ class SocketIOManager: NSObject {
 
     func establishConnection() {
         socket?.disconnect() // to make sure that mutiple sockets are not connected
-        socket?.connect()
-        print("Socket is Connected")
+        print("Connecting Socket.....................")
+        socket?.connect(timeoutAfter: 5, withHandler: {
+            self.establishConnection()
+            print("Error in Connecting Socket")
+        })
     }
 
     func closeConnection() {

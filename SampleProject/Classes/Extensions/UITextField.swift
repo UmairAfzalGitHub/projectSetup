@@ -2,8 +2,8 @@
 //  UITextField+VT.swift
 //  Labour Choice
 //
-//  Created by talha on 20/06/2017.
-//  Copyright © 2017 talha. All rights reserved.
+//  Created by Umair Afzal on 20/06/2017.
+//  Copyright © 2017 Umair Afzal. All rights reserved.
 //
 
 import Foundation
@@ -40,5 +40,15 @@ extension UITextField {
         border.borderWidth = borderWidth
         self.layer.addSublayer(border)
         self.layer.masksToBounds = true
+    }
+
+    func setImageToRightView(image: UIImage, width: CGFloat = 20.0, height: CGFloat = 20.0) {
+        let rightView = UIView(frame: CGRect(x: -15, y: 0, width: width, height: height))
+        let imageView = UIImageView(frame: CGRect(x: -15, y: 0, width: width, height: height))
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = image
+        rightView.addSubview(imageView)
+        self.rightView = rightView
+        self.rightViewMode = .always
     }
 }

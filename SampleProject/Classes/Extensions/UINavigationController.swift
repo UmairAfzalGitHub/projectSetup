@@ -15,7 +15,8 @@ extension UINavigationController {
         self.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationBar.shadowImage = UIImage()
         self.navigationBar.isTranslucent = true
-        self.view.backgroundColor = .clear
+        self.navigationBar.barTintColor = UIColor.clear
+        self.navigationBar.backgroundColor = .clear
     }
 
     func setAttributedTitle() {
@@ -24,9 +25,10 @@ extension UINavigationController {
     }
 
     func setupAppThemeNavigationBar() {
+        navigationBar.setBackgroundImage(nil, for: .default)
+        navigationBar.shadowImage = UIImage()
+        navigationBar.barTintColor = #colorLiteral(red: 0.1450980392, green: 0.0862745098, blue: 0.1803921569, alpha: 1)
         navigationBar.isTranslucent = false
-        navigationBar.barTintColor = .appThemeColor()
-        navigationBar.tintColor = .white
         navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.appThemeFontWithSize(20.0)]
     }
 }
