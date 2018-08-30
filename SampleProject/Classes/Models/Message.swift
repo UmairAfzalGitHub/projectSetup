@@ -20,12 +20,6 @@ class Messages: Mappable {
     func mapping(map: Map) {
         messages                <- map["messages"]
         badgeValue              <- map["unReadMessagesCount"]
-        postMapping()
-    }
-
-    func postMapping() {
-        // Reverse the array
-//        messages = messages.reversed()
     }
 }
 
@@ -43,7 +37,6 @@ class Message : Mappable {
     var seekerName = ""
     var isEdited = false
     var senderId = ""
-    //var helper = Mapper<HelpMate>().map(JSON: [:])!
 
     required init?(map: Map) {
 
@@ -57,7 +50,6 @@ class Message : Mappable {
         formattedDate           <- map["formatedDate"]
         body                    <- map["body"]
         jobId                   <- map["jobId"]
-        //helper                  <- map["helper"]
         threadId                <- map["threadId"]
         messageType             <- map["messageType"]
         isEdited                <- map["isEdited"]

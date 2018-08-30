@@ -179,7 +179,6 @@ class Utility : NSObject {
     }
 
     class func saveUserDataInDefaults(user: SignIn) {
-
         User.shared.firstName = user.firstName
         User.shared.lastName = user.lastName
         User.shared.email = user.email
@@ -231,38 +230,6 @@ class Utility : NSObject {
         UserDefaults.standard.set(true, forKey: kShouldLoadRejectJobData)
     }
 
-    class func getRejectedJobDetails() -> UserPushNotitfication {
-
-        let data = Mapper<UserPushNotitfication>().map(JSON: [:])!
-
-
-        if let description = UserDefaults.standard.value(forKey: kDescription) as? String {
-            data.description = description
-        }
-
-        if let duration = UserDefaults.standard.value(forKey: kDuration) as? String {
-            data.duration = duration
-        }
-
-        if let long = UserDefaults.standard.value(forKey: KLong) as? Double {
-            data.long = long
-        }
-
-        if let lat = UserDefaults.standard.value(forKey: kLat) as? Double {
-            data.lat = lat
-        }
-
-        if let startTime = UserDefaults.standard.value(forKey: kStartTime) as? String {
-            data.startTime = startTime
-        }
-
-        if let address = UserDefaults.standard.value(forKey: kJobAddress) as? String {
-            data.address = address
-        }
-
-        return data
-    }
-
     class func displayMessageInDeviceConsole(message: String) {
         NSLog(message)
     }
@@ -271,7 +238,6 @@ class Utility : NSObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM, hh:mm a"
         return dateFormatter.string(from: Date())
-
     }
 
     class func showBanner(titile: String = "", message: String) {
@@ -353,7 +319,6 @@ class Utility : NSObject {
         UserDefaults.standard.removeObject(forKey: kUserId)
         UserDefaults.standard.removeObject(forKey: kUserId)
         UserDefaults.standard.removeObject(forKey: kUserId)
-
     }
 
     class func setSignViewControllerAsRoot() {

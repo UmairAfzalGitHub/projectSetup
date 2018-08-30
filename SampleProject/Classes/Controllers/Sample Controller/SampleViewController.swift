@@ -12,7 +12,6 @@ import ObjectMapper
 
 class SampleViewController: UIViewController {
 
-    // Always devide variables and constants logically
     // Try to write methods in the same sequence in which they are called
     // Always write Marks
     // Always write extension if you are using tableView of collectionView OR any delegation having more than 2 functions

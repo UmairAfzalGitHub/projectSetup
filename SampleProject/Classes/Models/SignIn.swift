@@ -76,7 +76,6 @@ class ProfileImage: Mappable {
     var imageUrl = ""
 
     required init?(map: Map) {
-
     }
 
     func mapping(map: Map) {

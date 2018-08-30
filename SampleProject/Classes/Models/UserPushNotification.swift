@@ -31,7 +31,6 @@ class UserPushNotitfication: Mappable {
     var test = ""
 
     required init?(map: Map) {
-
     }
 
     func mapping(map: Map) {

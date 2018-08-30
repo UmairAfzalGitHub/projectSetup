@@ -76,9 +76,7 @@ class APIClient: APIClientHandler {
 
     @discardableResult
     func logout(_ completionBlock: @escaping APIClientCompletionHandler) -> Request {
-
         let serviceName = "seeker/logOut"
-
         return sendRequest(serviceName, parameters: nil, isPostRequest: true, headers: nil, completionBlock: completionBlock)
     }
 
@@ -86,23 +84,18 @@ class APIClient: APIClientHandler {
 
     @discardableResult
     func createJobThread(jobId: String, _ completionBlock: @escaping APIClientCompletionHandler) -> Request {
-
         let serviceName = "thread/create"
         let params = ["jobId": jobId] as [String : AnyObject]
-
         return sendRequest(serviceName, parameters: params, isPostRequest: true, headers: nil, completionBlock: completionBlock)
     }
 
     @discardableResult
     func sendMessage(chatId: String, message: String, _ completionBlock: @escaping APIClientCompletionHandler) -> Request {
-
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MMM-yyyy HH:mm:ss"
         dateFormatter.string(from: Date())
-
         let serviceName = "message/\(chatId)/create"
         let params = ["message": message, "type": "text", "currentTime": dateFormatter.string(from: Date())] as [String : AnyObject]
-
         return sendRequest(serviceName, parameters: params, isPostRequest: true, headers: nil, completionBlock: completionBlock)
     }
 
@@ -118,7 +111,6 @@ class APIClient: APIClientHandler {
     @discardableResult
     func getUnratedJobs( _ completionBlock: @escaping APIClientCompletionHandler) -> Request {
         let serviceName = "job/latestJobRating"
-
         return sendRequest(serviceName, parameters: nil, isPostRequest: false, headers: nil, completionBlock: completionBlock)
     }
 
@@ -128,14 +120,12 @@ class APIClient: APIClientHandler {
     func sendStripeToken(token: String, _ completionBlock: @escaping APIClientCompletionHandler) -> Request {
         let serviceName = "str/user/card/add"
         let params = ["token": token] as [String : AnyObject]
-
         return sendRequest(serviceName, parameters: params, isPostRequest: true, headers: nil, completionBlock: completionBlock)
     }
 
     @discardableResult
     func getStripeCustomer( _ completionBlock: @escaping APIClientCompletionHandler) -> Request {
         let serviceName = "str/user"
-
         return sendRequest(serviceName, parameters: nil, isPostRequest: false, headers: nil, completionBlock: completionBlock)
     }
 
@@ -143,7 +133,6 @@ class APIClient: APIClientHandler {
     func deleteUserCard(cardId: String, _ completionBlock: @escaping APIClientCompletionHandler) -> Request {
         let serviceName = "str/user/card/delete"
         let params = ["cardId": cardId]
-
         return sendRequest(serviceName, parameters: params as [String : AnyObject], isPostRequest: true, headers: nil, completionBlock: completionBlock)
     }
 
@@ -191,5 +180,4 @@ class APIClient: APIClientHandler {
             }
         }
     }
-
 }
